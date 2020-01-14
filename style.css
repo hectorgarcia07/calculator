@@ -1,0 +1,18 @@
+
+#container{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    margin: 0 500px;
+}
+
+#header{
+    display: flex;
+}
+
+#solarPanel{
+    
+    border: 1px solid black;
+}
