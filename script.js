@@ -34,14 +34,23 @@ function handle_buttn_event(obj){
     {
         //calculate the result of the expression
         case "=":
-            //get the sencond number to perform operation
-            if(screen.textContent.length === 0)
-                secondDisplayVal = "0"
-            else
-                secondDisplayVal = screen.textContent;
-            result = operate(operator, firstDisplayVal, secondDisplayVal);
-            screen.innerHTML = result;
-            updateCurrOperation();
+            //is the user hasn't inputed any values yet, don't calculate
+            if(firstDisplayVal.length > 0)
+            {
+                //get the sencond number to perform operation
+                if(screen.textContent.length === 0)
+                    secondDisplayVal = "0"
+                else if(firstDisplayVal.length != 0 && secondDisplayVal.length != 0)
+                {
+                    firstDisplayVal = result;
+                    operationScreen = result + " " + operator;
+                }
+                else
+                    secondDisplayVal = screen.textContent;
+                result = operate(operator, firstDisplayVal, secondDisplayVal);
+                screen.innerHTML = result;
+                updateCurrOperation();
+            }
             break;
         //if it's an operator, update the operator
         //and update the screen size
@@ -49,6 +58,8 @@ function handle_buttn_event(obj){
         case "*":
         case "+":
         case "-":
+            if(result.length != 0)
+                secondDisplayVal = "";
             buildOperation(content);
             break;
     }
